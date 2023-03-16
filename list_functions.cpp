@@ -31,7 +31,7 @@ lst_node_t* list_insert (lst_node_t* head, lst_node_t* node)
     // for (int i = 0; current->next != NULL; i++)
     // {
     //     current   = current->next;
-    // }
+    //}
     node->prev    = current;
     node->next    = current->next;
     current->next = node;
