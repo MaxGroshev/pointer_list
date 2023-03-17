@@ -68,35 +68,53 @@ void list_graph (lst_node_t* head)
     init_graph (graphviz, &graph_dump_set);
 
     lst_node_t* current = head;
-    for (int i = 0; current != NULL; i++)
+    int node_count = 0 ;
+    for (int edge_count = 0; current != NULL; node_count++, edge_count++)
     {
         if (current->next == NULL)
         {
-            //printf ("Hello");
-            graph_dump_set.nodes[i].fillcolor = "#006400";
-            graph_dump_set.edges[i].label = "TAIL";
-            make_node (graphviz, &graph_dump_set, &current->data, graph_dump_set.nodes[i], NULL, 4, current->data);
+            graph_dump_set.nodes[node_count].fillcolor = "#006400";
+            graph_dump_set.nodes[node_count].label     = "TAIL";
+
+            make_node (graphviz, &graph_dump_set, &current->data, graph_dump_set.nodes[node_count], NULL, &current->prev->data, current->data);
+
+            graph_dump_set.edges[edge_count].style       = "invis";
+            graph_dump_set.edges[edge_count].constraint  = "false";
+            make_edge (graphviz, &graph_dump_set, &current->data, &current->prev->data, graph_dump_set.edges[edge_count]);
+
+            graph_dump_set.edges[++edge_count].fillcolor = "orange";
+            make_edge (graphviz, &graph_dump_set, &current->data, &current->prev->data, graph_dump_set.edges[edge_count]);
+            current = current->next;
+        }
+        else if (current->prev == NULL)
+        {
+            graph_dump_set.nodes[node_count].fillcolor = "#008080";
+            graph_dump_set.nodes[node_count].label     = "HEAD";
+            make_node (graphviz, &graph_dump_set, &current->data, graph_dump_set.nodes[node_count], &current->next->data, NULL, current->data);
+
+            graph_dump_set.edges[edge_count].style       = "invis";
+            graph_dump_set.edges[edge_count].constraint  = "false";
+            make_edge (graphviz, &graph_dump_set, &current->data, &current->next->data, graph_dump_set.edges[edge_count]);
+
+            graph_dump_set.edges[++edge_count].fillcolor = "blue";
+            make_edge (graphviz, &graph_dump_set, &current->data, &current->next->data, graph_dump_set.edges[edge_count]);
             current = current->next;
         }
         else
         {
-            graph_dump_set.edges[i].fillcolor = "blue";
-            make_node (graphviz, &graph_dump_set, &current->data, graph_dump_set.nodes[i], &current->next->data, 4, current->data);
-            make_edge (graphviz, &graph_dump_set, &current->data, &current->next->data, graph_dump_set.edges[i]);
+            make_node (graphviz, &graph_dump_set, &current->data, graph_dump_set.nodes[node_count], &current->next->data, &current->prev->data, current->data);
+
+            graph_dump_set.edges[edge_count].style = "invis";
+            make_edge (graphviz, &graph_dump_set, &current->data, &current->next->data, graph_dump_set.edges[edge_count]);
+
+            graph_dump_set.edges[++edge_count].fillcolor = "blue";
+            make_edge (graphviz, &graph_dump_set, &current->data, &current->next->data, graph_dump_set.edges[edge_count]);
+
+            graph_dump_set.edges[++edge_count].fillcolor = "orange";
+            make_edge (graphviz, &graph_dump_set, &current->data, &current->prev->data, graph_dump_set.edges[edge_count]);
             current = current->next;
         }
     }
-
-    // current = head;
-    // printf ("%p %p - head\n", current, head);
-    // for (int i = 0; current->next != NULL; i++)
-    // {
-    //     printf ("%p %p - head\n", current, head);
-    //     graph_dump_set.edges[i].fillcolor = "blue";
-    //     //graph_dump_set.edges[i].constraint = "false";
-    //     make_edge (graphviz, &graph_dump_set, &current->data, &current->next->data, graph_dump_set.edges[i]);
-    //     current = current->next;
-    // }
 
     run_graphviz (graphviz, &graph_dump_set);
     fclose (graphviz);

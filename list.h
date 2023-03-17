@@ -13,12 +13,6 @@ typedef int list_type; // type of elem in list
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-enum list_side
-{
-    TAIL = 1,
-    HEAD = 2,
-};
-
 enum code_of_errors
 {
     LIST_IS_OKAY    =  0,
@@ -50,6 +44,7 @@ void        list_construct  (list_t* box);
 lst_node_t* list_create     (list_type elem);
 lst_node_t* list_insert     (lst_node_t* head, lst_node_t* node);
 lst_node_t* list_push_front (lst_node_t* head, lst_node_t* node);
+lst_node_t* list_push_back  (lst_node_t* tail, lst_node_t* node);
 
 lst_node_t* list_pop        (list_t* box, size_t position);
 lst_node_t* list_remove     (lst_node_t* head, lst_node_t* node);

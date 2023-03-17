@@ -16,7 +16,6 @@ lst_node_t* list_create (list_type value)
     node->data = value;
     node->next = NULL;
     node->prev = NULL;
-   //printf ("%p\n", node);
     return node;
 }
 
@@ -35,11 +34,8 @@ lst_node_t* list_insert (lst_node_t* head, lst_node_t* node)
     node->prev    = current;
     node->next    = current->next;
     current->next = node;
-    printf ("2) %p %p - head\n", node, head);
     return head;
 }
-
-//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 lst_node_t* list_push_front (lst_node_t* head, lst_node_t* node)
 {
@@ -50,6 +46,15 @@ lst_node_t* list_push_front (lst_node_t* head, lst_node_t* node)
     return node;
 }
 
+lst_node_t* list_push_back (lst_node_t* tail, lst_node_t* node)
+{
+    MY_ASSERT (tail != NULL && node != NULL)
+    node->next = NULL;
+    node->prev = tail;
+    tail->next = node;
+    return node;
+}
+
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 lst_node_t* list_remove (lst_node_t* head, lst_node_t* node)
@@ -57,8 +62,6 @@ lst_node_t* list_remove (lst_node_t* head, lst_node_t* node)
     if (node == head)
     {
         lst_node_t* ret = head->next;
-
-        //ret->prev = NULL;
         free (head);
         return ret;
     }
@@ -68,12 +71,14 @@ lst_node_t* list_remove (lst_node_t* head, lst_node_t* node)
     {
         if (current->next == NULL)
         {
-            return head;
+            return head; //printf (inpossible to dedlete node that doesnot exist)
         }
         current = current->next;
     }
-    current->next = current->next->next;
-    free (current->next);
+    lst_node_t* tmp_node      = current->next;
+    current->next->next->prev = current;
+    current->next             = current->next->next;
+    free (tmp_node);
     return head;
 }
 

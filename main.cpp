@@ -14,8 +14,14 @@ int main ()
     list_insert (node1, node2);            //node1->next->data = node2->data
     list_insert (node1, node3);
     list_insert (node3, node4);
-    list_push_front (node1, node5);
+   // list_insert (node4, node5);
+    //list_insert (node3, node4);
+    //list_push_front (node1, node5);
+
+    list_push_back  (node2, list_create (555));
     //printf ("%p\n", node_x->next );
+   // list_remove (node5, node3);
+    list_push_front (node1, node5);
     list_graph  (node5);
     list_delete (node5);
     return 0;

@@ -17,7 +17,6 @@ void init_graph (FILE* graphviz, dump_graph_t* graph_dump_set)
     {
         graph_dump_set->nodes[i] = init_struct_node;
     }
-
     for (int i = 0; i < graph_dump_set->edge_capacity; i++)
     {
         graph_dump_set->edges[i] = init_struct_edge;
@@ -28,11 +27,12 @@ void init_graph (FILE* graphviz, dump_graph_t* graph_dump_set)
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-void make_node (FILE* graphviz, dump_graph_t* graph_dump_set, int* node_address, struct node_t nodes, int* next, size_t prev, int value)
+void make_node (FILE* graphviz, dump_graph_t* graph_dump_set, int* node_address, struct node_t nodes, int* next, int* prev, int value)
 {
-    if (graph_dump_set->node_capacity <= graph_dump_set->node_size + 5) resize_struct (graph_dump_set);
+    if (graph_dump_set->node_capacity <= graph_dump_set->node_size + 1) resize_struct (graph_dump_set);
 
-    fprintf (graphviz, "node%p [shape = \"%s\", fillcolor = \"%s\", style = \"%s\", fontcolor = \"%s\", fontname = \"%s\", color = \"%s\", label = \"{cell = %p\\n %s| {value = %d |next = %p |prev = %ld}}\"]\n",
+
+    fprintf (graphviz, "node%p [shape = \"%s\", fillcolor = \"%s\", style = \"%s\", fontcolor = \"%s\", fontname = \"%s\", color = \"%s\", label = \"{cell = %p\\n %s| {value = %d |next = %p |prev = %p}}\"]\n",
                 node_address, nodes.shape,  nodes.fillcolor,    nodes.style,    nodes.fontcolor,    nodes.fontname,    nodes.color,  node_address, nodes.label ,         value,      next,       prev);
     graph_dump_set->node_size++;
 }
@@ -41,7 +41,7 @@ void make_node (FILE* graphviz, dump_graph_t* graph_dump_set, int* node_address,
 
 void make_edge (FILE* graphviz, dump_graph_t* graph_dump_set, int* node_from, int* node_to, struct edge_t edges)
 {
-    if (graph_dump_set->edge_capacity <= graph_dump_set->edge_size + 5) resize_struct (graph_dump_set);
+    if (graph_dump_set->edge_capacity <= graph_dump_set->edge_size + 1) resize_struct (graph_dump_set);
 
     fprintf (graphviz, "node%p -> node%p [color = \"%s\", style = \"%s\", constraint = %s, fillcolor = \"%s\",   fontcolor = \"%s\", fontname = \"%s\", label = \"%s\"];\n",
                         node_from, node_to, edges.color,   edges.style,    edges.constraint, edges.fillcolor, edges.fontcolor,    edges.fontname,     edges.label);
@@ -65,12 +65,11 @@ void print_def_info (FILE* graphviz, dump_graph_t* graph_dump_set)
 
 void resize_struct (dump_graph_t* graph_dump_set)
 {
-    if (graph_dump_set->edge_capacity <= graph_dump_set->edge_size + 5)
+    if (graph_dump_set->edge_capacity <= graph_dump_set->edge_size + 1)
     {
 
-        size_t prev_capacity = graph_dump_set->edge_capacity;
+        size_t prev_capacity = graph_dump_set->edge_capacity ;
         graph_dump_set->edge_capacity *= 2;
-        printf ("%ld", graph_dump_set->edge_capacity);
         edge_t* edges_resize = (edge_t*) realloc (graph_dump_set->edges,  graph_dump_set->edge_capacity * sizeof (struct edge_t));
 
         MY_ASSERT (edges_resize != NULL);
@@ -82,7 +81,7 @@ void resize_struct (dump_graph_t* graph_dump_set)
         }
     }
 
-    else if (graph_dump_set->node_capacity <= graph_dump_set->node_size + 5)
+    else if (graph_dump_set->node_capacity <= graph_dump_set->node_size + 1)
     {
         size_t prev_capacity = graph_dump_set->node_capacity;
         graph_dump_set->node_capacity *= 2;
