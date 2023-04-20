@@ -3,8 +3,8 @@
 void init_graph (FILE* graphviz, dump_graph_t* graph_dump_set)
 {
     MY_ASSERT (graphviz != NULL && graph_dump_set != NULL)
-    graph_dump_set->edge_capacity = 10;
-    graph_dump_set->node_capacity = 10;
+    graph_dump_set->edge_capacity = 1;
+    graph_dump_set->node_capacity = 1;
     graph_dump_set->node_size     = 0;
     graph_dump_set->edge_size     = 0;
     graph_dump_set->nodes = (struct node_t*) calloc (graph_dump_set->node_capacity, sizeof (struct node_t)); //add different types
@@ -29,6 +29,7 @@ void init_graph (FILE* graphviz, dump_graph_t* graph_dump_set)
 
 void make_node (FILE* graphviz, dump_graph_t* graph_dump_set, int* node_address, struct node_t nodes, int* next, int* prev, int value)
 {
+    //printf ("%ld\n", graph_dump_set->node_size);
     if (graph_dump_set->node_capacity <= graph_dump_set->node_size + 1) resize_struct (graph_dump_set);
 
 
@@ -41,6 +42,7 @@ void make_node (FILE* graphviz, dump_graph_t* graph_dump_set, int* node_address,
 
 void make_edge (FILE* graphviz, dump_graph_t* graph_dump_set, int* node_from, int* node_to, struct edge_t edges)
 {
+   // printf ("%ld\n", graph_dump_set->edge_size);
     if (graph_dump_set->edge_capacity <= graph_dump_set->edge_size + 1) resize_struct (graph_dump_set);
 
     fprintf (graphviz, "node%p -> node%p [color = \"%s\", style = \"%s\", constraint = %s, fillcolor = \"%s\",   fontcolor = \"%s\", fontname = \"%s\", label = \"%s\"];\n",
@@ -65,9 +67,9 @@ void print_def_info (FILE* graphviz, dump_graph_t* graph_dump_set)
 
 void resize_struct (dump_graph_t* graph_dump_set)
 {
+
     if (graph_dump_set->edge_capacity <= graph_dump_set->edge_size + 1)
     {
-
         size_t prev_capacity = graph_dump_set->edge_capacity ;
         graph_dump_set->edge_capacity *= 2;
         edge_t* edges_resize = (edge_t*) realloc (graph_dump_set->edges,  graph_dump_set->edge_capacity * sizeof (struct edge_t));
@@ -81,7 +83,7 @@ void resize_struct (dump_graph_t* graph_dump_set)
         }
     }
 
-    else if (graph_dump_set->node_capacity <= graph_dump_set->node_size + 1)
+    if (graph_dump_set->node_capacity <= graph_dump_set->node_size + 1)
     {
         size_t prev_capacity = graph_dump_set->node_capacity;
         graph_dump_set->node_capacity *= 2;
@@ -94,6 +96,7 @@ void resize_struct (dump_graph_t* graph_dump_set)
         {
             graph_dump_set->nodes[i] = init_struct_node;
         }
+        printf ("here");
     }
 }
 
