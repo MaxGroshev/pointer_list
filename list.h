@@ -46,9 +46,9 @@ lst_node_t* list_push_back  (list_t* list, lst_node_t* node);
 
 lst_node_t* list_pop        (lst_node_t* head, size_t position);
 lst_node_t* list_pop_front  (lst_node_t* head, lst_node_t* node);
-lst_node_t* list_pop_back   (lst_node_t* head, lst_node_t* node);
-lst_node_t* list_remove     (list_t* list, lst_node_t* head, lst_node_t* node);
-lst_node_t* list_delete     (list_t* list, lst_node_t* head);
+lst_node_t* list_pop_back   (lst_node_t* head, lst_node_t* node = NULL);
+lst_node_t* list_remove     (list_t* list, lst_node_t* head, lst_node_t* node = NULL);
+lst_node_t* list_delete     (list_t* list);
 
 void        list_print      ();
 void        list_graph      (list_t* list, lst_node_t* head);

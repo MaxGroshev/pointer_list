@@ -41,10 +41,8 @@ lst_node_t* list_insert (list_t* list, lst_node_t* head, lst_node_t* node)
         list->head = head;
         list->tail = node;
     }
-    else if (list->tail)
-    {
-        list->tail = head;
-    }
+    else if (list->tail == head) list->tail = node;
+
     lst_node_t* current = head;
     node->prev          = current;
     node->next          = current->next;
@@ -110,15 +108,29 @@ lst_node_t* list_push_back (list_t* list, lst_node_t* node)
 
 lst_node_t* list_remove (list_t* list, lst_node_t* head, lst_node_t* node)
 {
-    MY_ASSERT (node != NULL);
+    MY_ASSERT (head != NULL);
 
     if (node == head)
     {
         lst_node_t* ret = head->next;
         free (head);
         list->size--;
-
         return ret;
+    }
+
+    if (list->head == head && head->next != NULL)
+    {
+        list->head = head->next;
+        list->head->prev = NULL;
+        free (head);
+        return list->head;
+    }
+    if (list->tail == head && head->prev != NULL)
+    {
+        list->tail = head->prev;
+        list->head->next = NULL;
+        free (head);
+        return list->tail;
     }
 
     lst_node_t* current = head;
@@ -141,12 +153,18 @@ lst_node_t* list_remove (list_t* list, lst_node_t* head, lst_node_t* node)
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-lst_node_t* list_delete (list_t* list, lst_node_t* head)
+lst_node_t* list_delete (list_t* list)
 {
-    lst_node_t* current = head;
-    while (head != NULL)
+    while (list->head == NULL)
     {
-        head = list_remove (list, head, head);
+        fprintf (stderr,"List was already freed\n");
+        return NULL;
+    }
+
+    lst_node_t* current = list->head;
+    while (current != NULL)
+    {
+        current = list_remove (list, current, current);
     }
 
     return NULL;

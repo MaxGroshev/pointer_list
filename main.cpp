@@ -21,8 +21,8 @@ int main ()
 
     list_push_back  (&list, list_create (555));
     //printf ("%p\n", node_x->next );
-    //list_remove (node5, node3);
+    list_remove (&list, node5);
     list_graph  (&list, list.head);
-    list_delete (&list, list.head);
+    list_delete (&list);
     return 0;
 }

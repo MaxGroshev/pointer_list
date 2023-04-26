@@ -21,6 +21,7 @@ $(PREF_OBJ)%.o : %.cpp
 
 valgrind:
 	valgrind --leak-check=full --show-leak-kinds=all --trace-children=yes ./$(TARGET)
+	rm -rf vgcore.*
 
 graphviz:
 	dot $(PREF_STAT)list_dump.dot -T pdf -o $(PREF_STAT)list_dump.pdf
@@ -28,4 +29,4 @@ graphviz:
 
 .PHONY : clean
 clean:
-	rm -rf $(PREF_OBJ)*.o $(TARGET)
+	rm -rf $(PREF_OBJ)*.o $(TARGET) vgcore.*
