@@ -3,13 +3,21 @@ digraph
 rankdir = "LR"
 splines = "ortho"
 
-node_stat [margin = "0.3*0.3", style = "filled", shape = "record", fillcolor = "#8DB6CD" label = "capacity = 0 | size = 0 | head point = 0 | tail point = 0"]
+node_stat [margin = "0.3*0.3", style = "filled", shape = "record", fillcolor = "#8DB6CD" label = "size = 3 | head point = 0 | tail point = 0"]
 {rank = source; node_stat}
 
-node0x7ffff601b2b0 [shape = "Mrecord", fillcolor = "#008080", style = "filled", fontcolor = "white", fontname = "Calibri", color = "white", label = "{cell = 0x7ffff601b2b0\n HEAD| {value = 221 |next = 0x7ffff601b2d0 |prev = (nil)}}"]
-node0x7ffff601b2b0 -> node0x7ffff601b2d0 [color = "black", style = "invis", constraint = false, fillcolor = "",   fontcolor = "", fontname = "Calibri", label = ""];
-node0x7ffff601b2b0 -> node0x7ffff601b2d0 [color = "black", style = "", constraint = true, fillcolor = "blue",   fontcolor = "", fontname = "Calibri", label = ""];
-node0x7ffff601b2d0 [shape = "Mrecord", fillcolor = "#006400", style = "filled", fontcolor = "white", fontname = "Calibri", color = "white", label = "{cell = 0x7ffff601b2d0\n TAIL| {value = 408 |next = (nil) |prev = 0x7ffff601b2b0}}"]
-node0x7ffff601b2d0 -> node0x7ffff601b2b0 [color = "black", style = "invis", constraint = false, fillcolor = "",   fontcolor = "", fontname = "Calibri", label = ""];
-node0x7ffff601b2d0 -> node0x7ffff601b2b0 [color = "black", style = "", constraint = true, fillcolor = "orange",   fontcolor = "", fontname = "Calibri", label = ""];
+node0x556726ef02f0 [shape = "Mrecord", fillcolor = "#008080", style = "filled", fontcolor = "white", fontname = "Calibri", color = "white", label = "{cell = 0x556726ef02f0\n HEAD| {value = 333 |next = 0x556726ef02b0 |prev = (nil)}}"]
+node0x556726ef02f0 -> node0x556726ef02b0 [color = "black", style = "invis", constraint = false, fillcolor = "",   fontcolor = "", fontname = "Calibri", label = ""];
+node0x556726ef02f0 -> node0x556726ef02b0 [color = "black", style = "", constraint = true, fillcolor = "blue",   fontcolor = "", fontname = "Calibri", label = ""];
+node0x556726ef02b0 [shape = "Mrecord", fillcolor = "#FA8072", style = "filled", fontcolor = "white", fontname = "Calibri", color = "white", label = "{cell = 0x556726ef02b0\n | {value = 221 |next = 0x556726ef02d0 |prev = 0x556726ef02f0}}"]
+node0x556726ef02b0 -> node0x556726ef02d0 [color = "black", style = "invis", constraint = true, fillcolor = "",   fontcolor = "", fontname = "Calibri", label = ""];
+node0x556726ef02b0 -> node0x556726ef02d0 [color = "black", style = "", constraint = true, fillcolor = "blue",   fontcolor = "", fontname = "Calibri", label = ""];
+node0x556726ef02b0 -> node0x556726ef02f0 [color = "black", style = "", constraint = true, fillcolor = "orange",   fontcolor = "", fontname = "Calibri", label = ""];
+node0x556726ef02d0 [shape = "Mrecord", fillcolor = "#FA8072", style = "filled", fontcolor = "white", fontname = "Calibri", color = "white", label = "{cell = 0x556726ef02d0\n | {value = 408 |next = 0x556726ef0310 |prev = 0x556726ef02b0}}"]
+node0x556726ef02d0 -> node0x556726ef0310 [color = "black", style = "invis", constraint = true, fillcolor = "",   fontcolor = "", fontname = "Calibri", label = ""];
+node0x556726ef02d0 -> node0x556726ef0310 [color = "black", style = "", constraint = true, fillcolor = "blue",   fontcolor = "", fontname = "Calibri", label = ""];
+node0x556726ef02d0 -> node0x556726ef02b0 [color = "black", style = "", constraint = true, fillcolor = "orange",   fontcolor = "", fontname = "Calibri", label = ""];
+node0x556726ef0310 [shape = "Mrecord", fillcolor = "#006400", style = "filled", fontcolor = "white", fontname = "Calibri", color = "white", label = "{cell = 0x556726ef0310\n TAIL| {value = 555 |next = (nil) |prev = 0x556726ef02d0}}"]
+node0x556726ef0310 -> node0x556726ef02d0 [color = "black", style = "invis", constraint = false, fillcolor = "",   fontcolor = "", fontname = "Calibri", label = ""];
+node0x556726ef0310 -> node0x556726ef02d0 [color = "black", style = "", constraint = true, fillcolor = "orange",   fontcolor = "", fontname = "Calibri", label = ""];
 }

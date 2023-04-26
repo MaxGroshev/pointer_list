@@ -29,19 +29,27 @@ struct lst_node_t
     list_type    data;
 };
 
+struct list_t
+{
+    size_t       size;
+    lst_node_t*  head;
+    lst_node_t*  tail;
+};
+
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+int         list_constructor(list_t* list);
 lst_node_t* list_create     (list_type elem);
-lst_node_t* list_insert     (lst_node_t* head, lst_node_t* node);
-lst_node_t* list_push_front (lst_node_t* node, lst_node_t* head = NULL);
-lst_node_t* list_push_back  (lst_node_t* node, lst_node_t* tail = NULL);
+lst_node_t* list_insert     (list_t* list, lst_node_t* head, lst_node_t* node = NULL);
+lst_node_t* list_push_front (list_t* list, lst_node_t* node);
+lst_node_t* list_push_back  (list_t* list, lst_node_t* node);
 
 lst_node_t* list_pop        (lst_node_t* head, size_t position);
 lst_node_t* list_pop_front  (lst_node_t* head, lst_node_t* node);
 lst_node_t* list_pop_back   (lst_node_t* head, lst_node_t* node);
-lst_node_t* list_remove     (lst_node_t* head, lst_node_t* node);
-lst_node_t* list_delete     (lst_node_t* head);
+lst_node_t* list_remove     (list_t* list, lst_node_t* head, lst_node_t* node);
+lst_node_t* list_delete     (list_t* list, lst_node_t* head);
 
 void        list_print      ();
-void        list_graph      (lst_node_t* head);
+void        list_graph      (list_t* list, lst_node_t* head);
 void        list_check      (const char* DUR_FILE, const char* FUNCTION, int LINE);

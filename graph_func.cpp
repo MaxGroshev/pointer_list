@@ -29,9 +29,7 @@ void init_graph (FILE* graphviz, dump_graph_t* graph_dump_set)
 
 void make_node (FILE* graphviz, dump_graph_t* graph_dump_set, int* node_address, struct node_t nodes, int* next, int* prev, int value)
 {
-    //printf ("%ld\n", graph_dump_set->node_size);
     if (graph_dump_set->node_capacity <= graph_dump_set->node_size + 1) resize_struct (graph_dump_set);
-
 
     fprintf (graphviz, "node%p [shape = \"%s\", fillcolor = \"%s\", style = \"%s\", fontcolor = \"%s\", fontname = \"%s\", color = \"%s\", label = \"{cell = %p\\n %s| {value = %d |next = %p |prev = %p}}\"]\n",
                 node_address, nodes.shape,  nodes.fillcolor,    nodes.style,    nodes.fontcolor,    nodes.fontname,    nodes.color,  node_address, nodes.label ,         value,      next,       prev);
@@ -42,7 +40,6 @@ void make_node (FILE* graphviz, dump_graph_t* graph_dump_set, int* node_address,
 
 void make_edge (FILE* graphviz, dump_graph_t* graph_dump_set, int* node_from, int* node_to, struct edge_t edges)
 {
-   // printf ("%ld\n", graph_dump_set->edge_size);
     if (graph_dump_set->edge_capacity <= graph_dump_set->edge_size + 1) resize_struct (graph_dump_set);
 
     fprintf (graphviz, "node%p -> node%p [color = \"%s\", style = \"%s\", constraint = %s, fillcolor = \"%s\",   fontcolor = \"%s\", fontname = \"%s\", label = \"%s\"];\n",
@@ -58,8 +55,8 @@ void print_def_info (FILE* graphviz, dump_graph_t* graph_dump_set)
     fprintf (graphviz, "rankdir = \"%s\"\n",   graph_dump_set->orientation);
     fprintf (graphviz, "splines = \"%s\"\n\n", graph_dump_set->splines);
 
-    fprintf (graphviz, "node_stat [margin = \"0.3*0.3\", style = \"filled\", shape = \"record\", fillcolor = \"#8DB6CD\" label = \"capacity = %ld | size = %ld | head point = %ld | tail point = %ld\"]\n",
-                        graph_dump_set->info.capacity, graph_dump_set->info.size, graph_dump_set->info.head, graph_dump_set->info.tail);
+    fprintf (graphviz, "node_stat [margin = \"0.3*0.3\", style = \"filled\", shape = \"record\", fillcolor = \"#8DB6CD\" label = \"size = %ld | head point = %ld | tail point = %ld\"]\n",
+                        graph_dump_set->info.size, graph_dump_set->info.head, graph_dump_set->info.tail);
     fprintf (graphviz, "{rank = source; node_stat}\n\n");
 }
 
@@ -96,7 +93,6 @@ void resize_struct (dump_graph_t* graph_dump_set)
         {
             graph_dump_set->nodes[i] = init_struct_node;
         }
-        printf ("here");
     }
 }
 

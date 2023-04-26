@@ -1,17 +1,18 @@
 #include "list.h"
 
-void list_graph (lst_node_t* head)
+void list_graph (list_t* list, lst_node_t* head)
 {
-    FILE* graphviz               = fopen ("./dump_info/list_dump.dot", "w");
+    FILE* graphviz = fopen ("./dump_info/list_dump.dot", "w");
     MY_ASSERT (graphviz != NULL)
+
     dump_graph_t graph_dump_set  = {};
+    graph_dump_set.info.size  = list->size;
     init_graph (graphviz, &graph_dump_set);
 
     lst_node_t* current = head;
     int node_count = 0;
     for (int edge_count = 0; current != NULL; node_count++, edge_count++)
     {
-         printf ("%d\n", node_count);
         if (current->next == NULL)
         {
             graph_dump_set.nodes[node_count].fillcolor = "#006400";
