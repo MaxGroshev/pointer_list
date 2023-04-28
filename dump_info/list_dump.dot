@@ -3,17 +3,25 @@ digraph
 rankdir = "LR"
 splines = "ortho"
 
-node_stat [margin = "0.3*0.3", style = "filled", shape = "record", fillcolor = "#8DB6CD" label = "size = 3 | head point = 0 | tail point = 0"]
+node_stat [margin = "0.3*0.3", style = "filled", shape = "record", fillcolor = "#8DB6CD" label = "size = 5 | head point = 0 | tail point = 0"]
 {rank = source; node_stat}
 
-node0x555fbbc592b0 [shape = "Mrecord", fillcolor = "#008080", style = "filled", fontcolor = "white", fontname = "Calibri", color = "white", label = "{cell = 0x555fbbc592b0\n HEAD| {value = 221 |next = 0x555fbbc592d0 |prev = (nil)}}"]
-node0x555fbbc592b0 -> node0x555fbbc592d0 [color = "black", style = "invis", constraint = false, fillcolor = "",   fontcolor = "", fontname = "Calibri", label = ""];
-node0x555fbbc592b0 -> node0x555fbbc592d0 [color = "black", style = "", constraint = true, fillcolor = "blue",   fontcolor = "", fontname = "Calibri", label = ""];
-node0x555fbbc592d0 [shape = "Mrecord", fillcolor = "#FA8072", style = "filled", fontcolor = "white", fontname = "Calibri", color = "white", label = "{cell = 0x555fbbc592d0\n | {value = 408 |next = 0x555fbbc59310 |prev = 0x555fbbc592b0}}"]
-node0x555fbbc592d0 -> node0x555fbbc59310 [color = "black", style = "invis", constraint = true, fillcolor = "",   fontcolor = "", fontname = "Calibri", label = ""];
-node0x555fbbc592d0 -> node0x555fbbc59310 [color = "black", style = "", constraint = true, fillcolor = "blue",   fontcolor = "", fontname = "Calibri", label = ""];
-node0x555fbbc592d0 -> node0x555fbbc592b0 [color = "black", style = "", constraint = true, fillcolor = "orange",   fontcolor = "", fontname = "Calibri", label = ""];
-node0x555fbbc59310 [shape = "Mrecord", fillcolor = "#006400", style = "filled", fontcolor = "white", fontname = "Calibri", color = "white", label = "{cell = 0x555fbbc59310\n TAIL| {value = 555 |next = (nil) |prev = 0x555fbbc592d0}}"]
-node0x555fbbc59310 -> node0x555fbbc592d0 [color = "black", style = "invis", constraint = false, fillcolor = "",   fontcolor = "", fontname = "Calibri", label = ""];
-node0x555fbbc59310 -> node0x555fbbc592d0 [color = "black", style = "", constraint = true, fillcolor = "orange",   fontcolor = "", fontname = "Calibri", label = ""];
+node0x55db64f56330 [shape = "Mrecord", fillcolor = "#008080", style = "filled", fontcolor = "white", fontname = "Calibri", color = "white", label = "{cell = 0x55db64f56330\n HEAD| {value = 333 |next = 0x55db64f562b0 |prev = (nil)}}"]
+node0x55db64f56330 -> node0x55db64f562b0 [color = "black", style = "invis", constraint = false, fillcolor = "",   fontcolor = "", fontname = "Calibri", label = ""];
+node0x55db64f56330 -> node0x55db64f562b0 [color = "black", style = "", constraint = true, fillcolor = "blue",   fontcolor = "", fontname = "Calibri", label = ""];
+node0x55db64f562b0 [shape = "Mrecord", fillcolor = "#FA8072", style = "filled", fontcolor = "white", fontname = "Calibri", color = "white", label = "{cell = 0x55db64f562b0\n | {value = 221 |next = 0x55db64f562d0 |prev = 0x55db64f56330}}"]
+node0x55db64f562b0 -> node0x55db64f562d0 [color = "black", style = "invis", constraint = true, fillcolor = "",   fontcolor = "", fontname = "Calibri", label = ""];
+node0x55db64f562b0 -> node0x55db64f562d0 [color = "black", style = "", constraint = true, fillcolor = "blue",   fontcolor = "", fontname = "Calibri", label = ""];
+node0x55db64f562b0 -> node0x55db64f56330 [color = "black", style = "", constraint = true, fillcolor = "orange",   fontcolor = "", fontname = "Calibri", label = ""];
+node0x55db64f562d0 [shape = "Mrecord", fillcolor = "#FA8072", style = "filled", fontcolor = "white", fontname = "Calibri", color = "white", label = "{cell = 0x55db64f562d0\n | {value = 408 |next = 0x55db64f56350 |prev = 0x55db64f562b0}}"]
+node0x55db64f562d0 -> node0x55db64f56350 [color = "black", style = "invis", constraint = true, fillcolor = "",   fontcolor = "", fontname = "Calibri", label = ""];
+node0x55db64f562d0 -> node0x55db64f56350 [color = "black", style = "", constraint = true, fillcolor = "blue",   fontcolor = "", fontname = "Calibri", label = ""];
+node0x55db64f562d0 -> node0x55db64f562b0 [color = "black", style = "", constraint = true, fillcolor = "orange",   fontcolor = "", fontname = "Calibri", label = ""];
+node0x55db64f56350 [shape = "Mrecord", fillcolor = "#FA8072", style = "filled", fontcolor = "white", fontname = "Calibri", color = "white", label = "{cell = 0x55db64f56350\n | {value = 555 |next = 0x55db64f56310 |prev = 0x55db64f562d0}}"]
+node0x55db64f56350 -> node0x55db64f56310 [color = "black", style = "invis", constraint = true, fillcolor = "",   fontcolor = "", fontname = "Calibri", label = ""];
+node0x55db64f56350 -> node0x55db64f56310 [color = "black", style = "", constraint = true, fillcolor = "blue",   fontcolor = "", fontname = "Calibri", label = ""];
+node0x55db64f56350 -> node0x55db64f562d0 [color = "black", style = "", constraint = true, fillcolor = "orange",   fontcolor = "", fontname = "Calibri", label = ""];
+node0x55db64f56310 [shape = "Mrecord", fillcolor = "#006400", style = "filled", fontcolor = "white", fontname = "Calibri", color = "white", label = "{cell = 0x55db64f56310\n TAIL| {value = 111 |next = (nil) |prev = 0x55db64f56350}}"]
+node0x55db64f56310 -> node0x55db64f56350 [color = "black", style = "invis", constraint = false, fillcolor = "",   fontcolor = "", fontname = "Calibri", label = ""];
+node0x55db64f56310 -> node0x55db64f56350 [color = "black", style = "", constraint = true, fillcolor = "orange",   fontcolor = "", fontname = "Calibri", label = ""];
 }

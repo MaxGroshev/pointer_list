@@ -9,15 +9,19 @@
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+#define CUR_POS_IN_PROG    __FILE__, __PRETTY_FUNCTION__, __LINE__
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 typedef int list_type; // type of elem in list
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 enum code_of_errors
 {
-    LIST_IS_OKAY    =  0,
-    CELL_NOT_FOUND  = -1,
-    NO_FREE_CELL    = -2,
+    LST_IS_OKAY         =  0,
+    LST_NODE_HAS_CHILD  = -1,
+    LST_CELL_NOT_EXIST  = -2,
 };
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -40,16 +44,21 @@ struct list_t
 
 int         list_constructor(list_t* list);
 lst_node_t* list_create     (list_type elem);
-lst_node_t* list_insert     (list_t* list, lst_node_t* head, lst_node_t* node = NULL);
-lst_node_t* list_push_front (list_t* list, lst_node_t* node);
-lst_node_t* list_push_back  (list_t* list, lst_node_t* node);
+int list_insert     (list_t* list, lst_node_t* head, lst_node_t* node = NULL);
+int list_emplace (list_t* list, int position, lst_node_t* node = NULL);
+int list_push_front (list_t* list, lst_node_t* node);
+int list_push_back  (list_t* list, lst_node_t* node);
 
-lst_node_t* list_pop        (lst_node_t* head, size_t position);
-lst_node_t* list_pop_front  (lst_node_t* head, lst_node_t* node);
-lst_node_t* list_pop_back   (lst_node_t* head, lst_node_t* node = NULL);
-lst_node_t* list_remove     (list_t* list, lst_node_t* head, lst_node_t* node = NULL);
+int list_pop_front(list_t* list);
+int list_pop_back (list_t* list);
+lst_node_t* list_erase     (list_t* list, lst_node_t* head, lst_node_t* node = NULL);
 lst_node_t* list_delete     (list_t* list);
+
+int         find_logic_pos (list_t* list, lst_node_t* node);
 
 void        list_print      ();
 void        list_graph      (list_t* list, lst_node_t* head);
 void        list_check      (const char* DUR_FILE, const char* FUNCTION, int LINE);
+
+void list_error (int code_of_error, const char* DUR_FILE, const char* FUNCTION, int LINE);
+

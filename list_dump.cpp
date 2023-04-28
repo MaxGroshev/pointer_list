@@ -1,5 +1,19 @@
 #include "list.h"
 
+void list_error (int code_of_error, const char* DUR_FILE, const char* FUNCTION, int LINE)
+{
+    fprintf (stderr,"\033[91m ERROR:\033[0m in : %s %s %d\n", DUR_FILE, FUNCTION, LINE);
+    switch (code_of_error)
+    {
+        case LST_NODE_HAS_CHILD:
+            fprintf (stderr, "----Impossible to add node that already has a child(ren))---\n");
+
+        case LST_CELL_NOT_EXIST:
+            fprintf (stderr, "---Wrong num_of_elem---\n");
+    }
+}
+
+
 void list_graph (list_t* list, lst_node_t* head)
 {
     FILE* graphviz = fopen ("./dump_info/list_dump.dot", "w");
